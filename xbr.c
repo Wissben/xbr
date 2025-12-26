@@ -20,8 +20,7 @@ int main(int argc, char *argv[]) {
   }
 
   char *output_name = "DP-0"; // Always the same output unless I decide to use
-
-  // HDMI for some reason lol
+                              // HDMI for some reason lol
   double brightness = atof(argv[1]);
 
   if (brightness <= 0 || brightness > 1) {
