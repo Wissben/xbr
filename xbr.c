@@ -17,6 +17,8 @@ You can install it with sudo ./install.sh and use it with xbr <device> <brightne
 #include <stdlib.h>
 #include <string.h>
 
+#define DEFAULT_ERR_BRIGHTNESS 0.5
+
 int main(int argc, char *argv[]) {
   if (argc != 3) {
     fprintf(stderr, "Usage: %s <device> <brightness>\n", argv[0]);
@@ -26,9 +28,14 @@ int main(int argc, char *argv[]) {
   char *output_name = argv[1];
   double brightness = atof(argv[2]);
 
-  if (brightness <= 0 || brightness > 1) {
-    fprintf(stderr, "Brightness must be between 0 and 1\n");
-    return 1;
+  if (brightness <= 0 ) {
+    fprintf(stdout, "Brightness cannot be zero or negative, defaulting to %f\n", DEFAULT_ERR_BRIGHTNESS);
+    brightness = DEFAULT_ERR_BRIGHTNESS;
+  }
+
+  if (brightness >= 1 ) {
+    fprintf(stdout, "Brightness cannot exceed 1, defaulting to 1\n");
+    brightness = 1.0;
   }
 
   Display *dpy = XOpenDisplay(NULL);
