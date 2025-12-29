@@ -14,14 +14,13 @@ N.B : brightness should be a float between 0 and 1.
 #include <string.h>
 
 int main(int argc, char *argv[]) {
-  if (argc != 2) {
-    fprintf(stderr, "Usage: %s <brightness>\n", argv[0]);
+  if (argc != 3) {
+    fprintf(stderr, "Usage: %s <device> <brightness>\n", argv[0]);
     return 1;
   }
 
-  char *output_name = "DP-0"; // Always the same output unless I decide to use
-                              // HDMI for some reason lol
-  double brightness = atof(argv[1]);
+  char *output_name = argv[1];
+  double brightness = atof(argv[2]);
 
   if (brightness <= 0 || brightness > 1) {
     fprintf(stderr, "Brightness must be between 0 and 1\n");
