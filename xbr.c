@@ -1,10 +1,14 @@
 /*
-Small tool to change the brightness of the primary display because I am lazy.
+Small tool to change the brightness of the primary display (or a specified output) because I am lazy.
 
+Usage:
+  xbr <device> <brightness>
 
-You can install it with sudo ./install.sh and use it with xbr <brightness>.
-N.B : brightness should be a float between 0 and 1.
+Where:
+  - device: the output name (e.g. "eDP-1", "HDMI-1"); get names via `xrandr --query`
+  - brightness: a floating-point value greater than 0 and at most 1 (0 < brightness <= 1)
 
+You can install it with sudo ./install.sh and use it with xbr <device> <brightness>.
 */
 
 #include <X11/Xlib.h>
